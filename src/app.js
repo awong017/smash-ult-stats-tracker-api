@@ -7,7 +7,7 @@ const { NODE_ENV } = require('./config')
 
 const app = express()
 
-let characters = [
+const characters = [
   {id:1,name:"Mario",img:"mario.jpg"},
   {id:2,name:"Donkey Kong",img:"donkey-kong.jpg"},
   {id:3,name:"Link",img:"link.jpg"},
@@ -100,27 +100,30 @@ app.get('/', (req, res) => {
 
 app.get('/characters', (req, res) => {
   const name = req.query.name
-  const checkForCharacter = characters.some(character => {
-    return character.name.toLowerCase().includes(name.toLowerCase())
-  })
 
-  if (checkForCharacter === false) {
-    res
-      .status(404)
-      .send("Character not found")
-  }
-  else if (name) {
-    const filteredCharacters = characters.filter(character => {
+  if (name) {
+    const checkForCharacter = characters.some(character => {
       return character.name.toLowerCase().includes(name.toLowerCase())
     })
-    res
-      .status(200)
-      .send(filteredCharacters)
+
+    if (checkForCharacter === false) {
+      res
+      .status(404)
+      .send("Character not found")
+    }
+    else {
+      const filteredCharacters = characters.filter(character => {
+        return character.name.toLowerCase().includes(name.toLowerCase())
+      })
+      res
+        .status(200)
+        .send(filteredCharacters)
+    }
   }
   else {
     res
-      .status(200)
-      .send(characters)
+    .status(200)
+    .send(characters)
   }
 })
 
