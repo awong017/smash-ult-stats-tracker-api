@@ -86,6 +86,33 @@ const characters = [
   {id:76,name:"Mii Gunner",img:"mii-gunner.jpg"},
 ]
 
+const matches = [
+  {
+    id: "m1",
+    date: 0980980098,
+    user: "u1",
+    player: 8,
+    opponent: 9,
+    outcome: "win"
+  },
+  {
+    id: "m2",
+    date: 0980980098,
+    user: "u1",
+    player: 8,
+    opponent: 9,
+    outcome: "loss"
+  },
+  {
+    id: "m3",
+    date: 0980980098,
+    user: "u1",
+    player: 8,
+    opponent: 9,
+    outcome: "win"
+  },
+]
+
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
@@ -93,6 +120,7 @@ const morganOption = (NODE_ENV === 'production')
 app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors())
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('Hello, world!')
@@ -127,9 +155,27 @@ app.get('/characters', (req, res) => {
   }
 })
 
-app.post('/', (req, res) => {
+app.get('/matches', (req, res) => {
   res
-    .send('Post Made')
+    .status(200)
+    .send(matches)
+})
+
+app.post('/matches', (req, res) => {
+  const {id, date, user, player, opponent, outcome } = req.body
+  const newUser = {
+    id: id,
+    date: date,
+    user: user,
+    player: player,
+    opponent: opponent,
+    outcome: outcome
+  }
+
+  matches.push(newUser)
+
+  res
+    .send(newUser)
 })
 
 app.use(errorHandler = (error, req, res, next) => {
