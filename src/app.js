@@ -178,6 +178,24 @@ app.post('/matches', (req, res) => {
     .send(newUser)
 })
 
+app.delete('/matches/:matchId', (req, res) => {
+  const { matchId } = req.params
+
+  const lookForMatch = matches.findIndex(m => m.id === matchId)
+
+  if (lookForMatch === -1) {
+    res
+      .status(404)
+      .send(`Match ${matchId} not found`)
+  }
+
+  matches.splice(lookForMatch, 1)
+
+  res
+    .status(200)
+    .send("Deleted")
+})
+
 app.use(errorHandler = (error, req, res, next) => {
   let response
   if (NODE_ENV === 'production') {
