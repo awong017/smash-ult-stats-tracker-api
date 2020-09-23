@@ -13,3 +13,5 @@ characterRouter
         })
         .catch(next)
     })
+
+module.exports = characterRouter
