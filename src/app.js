@@ -4,8 +4,9 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
-const characterRouter = require('./characters/characterRouter')
-const userRouter  = require('./users/userRouter')
+const CharacterRouter = require('./characters/characterRouter')
+const UserRouter  = require('./users/userRouter')
+const MatchRouter = require('./matches/matchRouter')
 
 const app = express()
 
@@ -29,7 +30,8 @@ app.use(errorHandler = (error, req, res, next) => {
     res.status(500).json(response)
 })
 
-app.use('/api/users', userRouter)
-app.use('/api/characters', characterRouter)
+app.use('/api/characters', CharacterRouter)
+app.use('/api/users', UserRouter)
+app.use('/api/matches', MatchRouter)
 
 module.exports = app

@@ -1,6 +1,6 @@
 const matchService = {
     getAllMatches(knex) {
-        return knex.select('*').from(matches)
+        return knex.select('*').from('matches')
     },
 
     insertMatch(knex, newMatch) {
