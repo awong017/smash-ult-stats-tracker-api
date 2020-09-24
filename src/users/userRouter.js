@@ -36,11 +36,11 @@ userRouter
 
         const knexInstance = req.app.get('db')
 
-        UserService(knexInstance, newUser)
+        UserService.insertUser(knexInstance, newUser)
             .then(user => {
                 res
                     .status(200)
-                    .json(serialize(user))
+                    .json(serializeUser(user))
             })
             .catch(next)
     })
