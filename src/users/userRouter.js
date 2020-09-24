@@ -23,7 +23,7 @@ userRouter
         .catch(next)
     })
     .post(bodyParser, (req, res, next) => {
-        const {email, username, password} = req.body
+        const { email, username, password } = req.body
         const newUser = {email, username, password}
 
         for (const [key, value] of Object.entries(newUser)) {

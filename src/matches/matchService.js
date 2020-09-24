@@ -1,4 +1,4 @@
-const matchesService = {
+const matchService = {
     getAllMatches(knex) {
         return knex.select('*').from(matches)
     },
@@ -20,4 +20,4 @@ const matchesService = {
     }
 }
 
-module.exports = matchesService
+module.exports = matchService
