@@ -1,5 +1,5 @@
 const express = require('express')
-const CharacterService = require('./character-service')
+const CharacterService = require('./characterService')
 
 characterRouter = express.Router()
 

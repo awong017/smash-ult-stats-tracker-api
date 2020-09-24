@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
-const characterRouter = require('./characters/character-router')
+const characterRouter = require('./characters/characterRouter')
 
 const app = express()
 
