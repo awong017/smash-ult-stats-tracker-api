@@ -45,6 +45,18 @@ userRouter
             .catch(next)
     })
 
+userRouter
+    .route('/:email')
+    .get((req, res, next) => {
+        const { email } = req.params
+        const knexInstance = req.app.get('db')
+        UserService.getUserByEmail(knexInstance, email)
+        .then(user => {
+            res.json(user)
+        })
+        .catch(next)
+    })
+
 module.exports = userRouter
 
 
