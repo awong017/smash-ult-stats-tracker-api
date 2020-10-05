@@ -13,9 +13,9 @@ const matchService = {
         })
     },
 
-    deleteMatch(knex, id) {
+    deleteMatch(knex, date) {
         return knex('matches')
-        .where('id', id)
+        .where('date', date)
         .delete()
     }
 }

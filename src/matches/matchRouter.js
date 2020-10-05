@@ -39,17 +39,17 @@ matchRouter
     })
 
 matchRouter
-    .route('/:match_id')
+    .route('/:match_date')
     .delete((req, res, next) => {
-        const { match_id } = req.params
-        if (!match_id) {
+        const { match_date } = req.params
+        if (!match_date) {
             return res
                 .status(400)
-                .json({"error": "Please specify a match id to delete"})
+                .json({"error": "Please specify a match date to delete"})
         }
         MatchService.deleteMatch(
             req.app.get('db'),
-            match_id
+            match_date
         )
         .then(
             res
