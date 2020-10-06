@@ -10,10 +10,10 @@ matchRouter
     .get((req, res, next) => {
         const knexInstance = req.app.get('db')
         MatchService.getAllMatches(knexInstance)
-        .then(matches => {
-            res.json(matches)
-        })
-        .catch(next)
+            .then(matches => {
+                res.json(matches)
+            })
+            .catch(next)
     })
     .post(bodyParser, (req, res, next) => {
         const { date, user_id, player, opponent, outcome } = req.body
@@ -39,6 +39,18 @@ matchRouter
     })
 
 matchRouter
+    .route('/:user_id/:player/:opponent')
+    .get((req, res, next) => {
+        const { user_id, player, opponent } = req.params
+        const knexInstance = req.app.get('db')
+        MatchService.getSpecificMatches(knexInstance, user_id, player, opponent)
+            .then(matches => { 
+                res.json(matches)
+            })
+            .catch(next)
+    })
+
+matchRouter
     .route('/:match_date')
     .delete((req, res, next) => {
         const { match_date } = req.params
@@ -51,12 +63,12 @@ matchRouter
             req.app.get('db'),
             match_date
         )
-        .then(
-            res
-                .status(200)
-                .send('Deleted')
-        )
-        .catch(next)
+            .then(
+                res
+                    .status(200)
+                    .send('Deleted')
+            )
+            .catch(next)
     })
 
 module.exports = matchRouter

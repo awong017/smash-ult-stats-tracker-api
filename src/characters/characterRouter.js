@@ -8,10 +8,10 @@ characterRouter
     .get((req, res, next) => {
         const knexInstance = req.app.get('db')
         CharacterService.getAllCharacters(knexInstance)
-        .then(characters => {
-            res.json(characters)
-        })
-        .catch(next)
+            .then(characters => {
+                res.json(characters)
+            })
+            .catch(next)
     })
 
 module.exports = characterRouter

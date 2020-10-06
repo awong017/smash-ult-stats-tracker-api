@@ -3,6 +3,19 @@ const matchService = {
         return knex.select('*').from('matches')
     },
 
+    getSpecificMatches(knex, user_id, player, opponent) {
+        return knex
+            .select('*')
+            .from('matches')
+            .where(
+                {
+                    'user_id': user_id,
+                    'player': player,
+                    'opponent': opponent
+                }
+            )
+    },
+
     insertMatch(knex, newMatch) {
         return knex
             .insert(newMatch)

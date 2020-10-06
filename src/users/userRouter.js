@@ -17,10 +17,10 @@ userRouter
     .get((req, res, next) => {
         const knexInstance = req.app.get('db')
         UserService.getAllUsers(knexInstance)
-        .then(users => {
-            res.json(users)
-        })
-        .catch(next)
+            .then(users => {
+                res.json(users)
+            })
+            .catch(next)
     })
     .post(bodyParser, (req, res, next) => {
         const { email, username, password } = req.body
@@ -51,10 +51,10 @@ userRouter
         const { email } = req.params
         const knexInstance = req.app.get('db')
         UserService.getUserByEmail(knexInstance, email)
-        .then(user => {
-            res.json(user)
-        })
-        .catch(next)
+            .then(user => {
+                res.json(user)
+            })
+            .catch(next)
     })
 
 module.exports = userRouter
