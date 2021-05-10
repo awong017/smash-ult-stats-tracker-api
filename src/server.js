@@ -1,9 +1,6 @@
-const postgres = require('pg');
 const knex = require('knex')
 const app = require('./app')
 const { PORT, DATABASE_URL } = require('./config')
-
-postgres.defaults.ssl = true;
 
 const db = knex({
   client: 'pg',
