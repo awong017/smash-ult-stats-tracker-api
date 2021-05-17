@@ -1,8 +1,4 @@
-INSERT INTO users(email, username, password)
-	VALUES
-		('awong017@ucr.edu', 'awong017', 'awong017'),
-		('brianphn@gmail.com', 'phanman', 'phantastic'),
-		('markt@gmail.com', 'markt', 'masterdev'),
-		('shaan@gmail.com', 'raisin', 'raisin'), 
-		('alvin@gmail.com', 'alvinv', 'masterdev2')
-    ;
+INSERT INTO users (id, email, firstname, lastname, password, phone)
+  VALUES
+    ('123-abc', 'johndoe@gmail.com', 'john', 'doe', 'welcome', 5555555555)
+  ;

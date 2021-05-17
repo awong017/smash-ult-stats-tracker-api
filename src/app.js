@@ -4,11 +4,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
-const CharacterRouter = require('./characters/characterRouter')
 const UserRouter  = require('./users/userRouter')
-const MatchRouter = require('./matches/matchRouter')
-const EmailRouter = require('./email/emailRouter')
-
 const app = express()
 
 const morganOption = (NODE_ENV === 'production')
@@ -31,9 +27,6 @@ app.use(errorHandler = (error, req, res, next) => {
     res.status(500).json(response)
 })
 
-app.use('/api/characters', CharacterRouter)
 app.use('/api/users', UserRouter)
-app.use('/api/matches', MatchRouter)
-app.use('/api/email', EmailRouter)
 
 module.exports = app
